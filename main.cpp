@@ -95,6 +95,7 @@ class Sudoku {
                     grid.at(row).at(col) = 0;
                 }
             }
+            return false;
         }
         void show() {
             for (int i(0); i < 9; i++){
@@ -125,18 +126,21 @@ int main(){
     } while (n < 17);
 
     for (int i(0); i < n; i++){
-        std::cout << "Inesrt the position (row, column): ";
+        std::cout << "Insert the position (row, column): ";
         int x, y;
         std::cin >> x >> y;
-        std::cout << "Inesrt the digit: ";
+        std::cout << "Insert the digit: ";
         int digit;
         std::cin >> digit;
         try {
             sudoku.set(x, y, digit);
         } catch (const std::exception& e) {
             std::cout << e.what() << '\n';
+            i--;
         }
     }
+    sudoku.show();
+    std::cout << std::endl;
     if(sudoku.solve())
         sudoku.show();
     else std::cout << "No solution :(";
